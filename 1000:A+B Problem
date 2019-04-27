@@ -1,0 +1,30 @@
+描述
+Calculate a + b
+
+输入
+
+Two integer a,,b (0 ≤ a,b ≤ 10)
+
+输出
+
+Output a + b
+
+样例输入
+
+1 2
+
+样例输出
+
+3
+
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		System.out.println(a + b);
+	}
+}
