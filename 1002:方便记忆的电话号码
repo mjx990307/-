@@ -1,0 +1,45 @@
+public class Main {
+	static int[] map = [2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,0,7,7,8,8,8,9,9,9,0]
+	static String[] extra = {"000000","00000","0000","000","00","0",""};
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		TreeMap<Integer, Integer> map = new TreeMap<>();
+		for (int i = 0; i < n; i++) {
+			String row = sc.next();
+			int val = getNumber(row);
+			if (map.containsKey(val)) {
+				map.replace(val, map.get(val) + 1);
+			} else {
+				map.put(val, 1);
+			}
+		}
+		int flag = 0;
+		for (Integer x : map.keySet()) {
+			int y = map.get(x);
+			if (y > 1) {
+				flag = 1;
+				String s = String.valueOf(x);
+				s = extra[s.length() - 1] + s;
+				System.out.println(s.substring(0,3)+"-"+s.substring(3,7)+" "+y);
+			}
+		}
+		if (flag == 0) {
+			System.out.println("No duplicates.");
+		}
+	}
+	public static int getNumber(String row) {
+		char[] arr = row.toCharArray();
+		int res = 0;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] == '-')
+				continue;
+			if (Character.isDigit(arr[i])) {
+				res = res * 10 + arr[i] - '0';
+			} else {
+				res = res * 10 + map[arr[i] - 'A'];
+			}
+		}
+		return res;
+	}
+}
